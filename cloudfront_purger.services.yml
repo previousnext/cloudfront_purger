@@ -7,12 +7,9 @@ services:
 
   cloudfront_purger.invalidator:
     class: Drupal\cloudfront_purger\CloudFrontInvalidator
-    arguments: ['@cloudfront_purger.cloudfront_client', '@logger.channel.cloudfront_purger']
+    arguments: ['@cloudfront_purger.cloudfront_client', '@purge.logger']
 
   cloudfront_purger.cloudfront_client:
     class: \Aws\CloudFront\CloudFrontClient
     arguments: ['%cloudfront_purger.cloudfront_client.options%']
-
-  logger.channel.cloudfront_purger:
-    parent: logger.channel_base
-    arguments: ['cloudfront_purger']
+    public: false

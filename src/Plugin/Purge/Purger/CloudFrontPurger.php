@@ -15,7 +15,6 @@ use Drupal\purge\Plugin\Purge\Invalidation\InvalidationInterface;
 use Drupal\purge\Plugin\Purge\Invalidation\PathInvalidation;
 use Drupal\purge\Plugin\Purge\Invalidation\WildcardPathInvalidation;
 use Drupal\purge\Plugin\Purge\Purger\PurgerBase;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -48,13 +47,6 @@ class CloudFrontPurger extends PurgerBase {
   protected $settings;
 
   /**
-   * The logger.
-   *
-   * @var \Psr\Log\LoggerInterface
-   */
-  protected $logger;
-
-  /**
    * CloudFrontPurger constructor.
    *
    * @param array $configuration
@@ -63,14 +55,14 @@ class CloudFrontPurger extends PurgerBase {
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   *
-   * @throws \LogicException
-   *   Thrown if $configuration['id'] is missing, see Purger\Service::createId.
+   * @param \Drupal\cloudfront_purger\CloudFrontInvalidatorInterface $invalidator
+   *   The CloudFront invalidator.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, CloudFrontInvalidatorInterface $invalidator, ConfigFactoryInterface $config_factory, LoggerInterface $logger) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, CloudFrontInvalidatorInterface $invalidator, ConfigFactoryInterface $config_factory) {
     $this->invalidator = $invalidator;
     $this->settings = $config_factory->get('cloudfront_purger.settings');
-    $this->logger = $logger;
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
 
@@ -83,8 +75,7 @@ class CloudFrontPurger extends PurgerBase {
       $plugin_id,
       $plugin_definition,
       $container->get('cloudfront_purger.invalidator'),
-      $container->get('config.factory'),
-      $container->get('logger.channel.cloudfront_purger')
+      $container->get('config.factory')
     );
   }
 
@@ -113,7 +104,7 @@ class CloudFrontPurger extends PurgerBase {
 
     // Exit early if there are no paths.
     if (empty($paths)) {
-      $this->logger->info('No paths found to purge');
+      $this->logger()->info('No paths found to purge');
       return;
     }
 
@@ -123,7 +114,7 @@ class CloudFrontPurger extends PurgerBase {
       $this->setStates($invalidations, InvalidationInterface::SUCCEEDED);
     }
     catch (\Exception $e) {
-      $this->logger->error('%type: @message in %function (line %line of %file)', Error::decodeException($e));
+      $this->logger()->error('%type: @message in %function (line %line of %file)', Error::decodeException($e));
       $this->setStates($invalidations, InvalidationInterface::FAILED);
     }
   }
@@ -132,7 +123,14 @@ class CloudFrontPurger extends PurgerBase {
    * {@inheritdoc}
    */
   public function hasRuntimeMeasurement() {
-    return FALSE;
+    return TRUE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTimeHint() {
+    return 4.0;
   }
 
   /**
