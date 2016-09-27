@@ -12,6 +12,7 @@ use Psr\Log\LoggerInterface;
  * Unit tests for CloudFrontPurger.
  *
  * @coversDefaultClass \Drupal\cloudfront_purger\Plugin\Purge\Purger\CloudFrontPurger
+ * @group cloudfront_purger
  */
 class CloudFrontPurgerTest extends UnitTestCase {
 
