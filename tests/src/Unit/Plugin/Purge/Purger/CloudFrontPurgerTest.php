@@ -1,15 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\Tests\cloudfront_purger\Unit\Plugin\Purge\Purger\CloudFrontPurgerTest
- */
-
 namespace Drupal\Tests\cloudfront_purger\Unit\Plugin\Purge\Purger;
 
 use Drupal\cloudfront_purger\CloudFrontInvalidatorInterface;
 use Drupal\cloudfront_purger\Plugin\Purge\Purger\CloudFrontPurger;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\purge\Plugin\Purge\Invalidation\PathInvalidation;
 use Drupal\Tests\UnitTestCase;
 use Psr\Log\LoggerInterface;
@@ -122,4 +116,5 @@ class CloudFrontPurgerTest extends UnitTestCase {
     $invalidation->setStateContext('path');
     return $invalidation;
   }
+
 }

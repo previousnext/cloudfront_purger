@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\cloudfront\Form\CloudFrontPurgerConfigForm
- */
-
 namespace Drupal\cloudfront_purger\Form;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -25,7 +20,7 @@ class CloudFrontPurgerConfigForm extends PurgerConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function getFormID() {
+  public function getFormId() {
     return 'cloudfront_purger.config_form';
   }
 
@@ -36,7 +31,7 @@ class CloudFrontPurgerConfigForm extends PurgerConfigFormBase {
     $form['distribution_id'] = [
       '#type' => 'textfield',
       '#title' => t('Distribution ID'),
-      '#default_value' => $this->config('cloudfront_purger.settings')->get('distribution_id')
+      '#default_value' => $this->config('cloudfront_purger.settings')->get('distribution_id'),
     ];
     return parent::buildForm($form, $form_state);
   }
@@ -51,4 +46,3 @@ class CloudFrontPurgerConfigForm extends PurgerConfigFormBase {
   }
 
 }
-

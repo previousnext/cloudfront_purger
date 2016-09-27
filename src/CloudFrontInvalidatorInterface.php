@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\cloudfront\CloudFrontInvalidatorInterface.
- */
-
 namespace Drupal\cloudfront_purger;
 
 /**

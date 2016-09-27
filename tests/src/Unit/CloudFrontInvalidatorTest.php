@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\Tests\cloudfront\Unit\CloudFrontInvalidatorTest
- */
-
 namespace Drupal\Tests\cloudfront_purger\Unit;
 
 use Aws\CloudFront\CloudFrontClient;
@@ -16,7 +11,7 @@ use Drupal\Tests\UnitTestCase;
 use Psr\Log\LoggerInterface;
 
 /**
- * Tests for CloudFrontInvalidator,
+ * Tests for CloudFrontInvalidator,.
  *
  * @coversDefaultClass \Drupal\cloudfront_purger\CloudFrontInvalidator
  * @group cloudfront_purger
@@ -33,14 +28,14 @@ class CloudFrontInvalidatorTest extends UnitTestCase {
   /**
    * The CloudFront client.
    *
-   * @var \PHPUnit_Framework_MockObject_MockObject|\Aws\CloudFront\CloudFrontClient $client
+   * @var \PHPUnit_Framework_MockObject_MockObject|\Aws\CloudFront\CloudFrontClient
    */
   protected $client;
 
   /**
    * The logger.
    *
-   * @var \PHPUnit_Framework_MockObject_MockObject|\Psr\Log\LoggerInterface $logger
+   * @var \PHPUnit_Framework_MockObject_MockObject|\Psr\Log\LoggerInterface
    */
   protected $logger;
 
@@ -106,4 +101,5 @@ class CloudFrontInvalidatorTest extends UnitTestCase {
     $this->invalidator->invalidate($paths, $distribution_id);
 
   }
+
 }
