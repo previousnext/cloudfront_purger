@@ -2,7 +2,6 @@ name: CloudFront Purge
 type: module
 description: Provides a Purge plugin for AWS CloudFront
 package: Purge
-version: VERSION
 core: 8.x
 dependencies:
   - purge
