@@ -25,12 +25,12 @@ composer require aws/aws-sdk-php:~3.0
 You need to specify the Distribution ID in your settings.php.
 
 ```
-$conf['cloudfront.settings']['distribution_id'] = 'ABCD1234';
+$config['cloudfront_purger.settings']['distribution_id'] = 'ABCD1234';
 ```
 Alternatively, you can use drush to set it, then export as part of your site configuration.
 
 ```
-drush config-set cloudfront.settings distribution_id ABCD1234
+drush config-set cloudfront_purger.settings distribution_id ABCD1234
 ```
 
 ### Overriding AWS CloudFront region.
