@@ -41,7 +41,7 @@ class CloudFrontPurgerConfigForm extends PurgerConfigFormBase {
    */
   public function submitFormSuccess(array &$form, FormStateInterface $form_state) {
     $this->config('cloudfront_purger.settings')
-      ->set('distribution_id', $form_state->get('distribution_id'))
+      ->set('distribution_id', $form_state->getValue('distribution_id'))
       ->save();
   }
 
