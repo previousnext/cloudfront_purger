@@ -7,9 +7,9 @@ use Drupal\Core\Form\FormState;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Tests for CloudFrontInvalidator,.
+ * Tests for CloudFrontPurgerConfigForm.
  *
- * @coversDefaultClass \Drupal\cloudfront_purger\CloudFrontInvalidator
+ * @coversDefaultClass \Drupal\cloudfront_purger\Form\CloudFrontPurgerConfigForm
  * @group cloudfront_purger
  */
 class CloudFrontPurgerConfigFormTest extends UnitTestCase {
