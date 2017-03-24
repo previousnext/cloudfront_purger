@@ -51,7 +51,7 @@ class CloudFrontInvalidator implements CloudFrontInvalidatorInterface {
         ],
       ],
     ]);
-    $this->logger->info('Successfully invalidated URLS: !urls', ['!urls' => implode(', ', $paths)]);
+    $this->logger->info('Successfully invalidated URLS: @urls', ['@urls' => implode(', ', $paths)]);
     return $result['Invalidation']['Id'];
   }
 
