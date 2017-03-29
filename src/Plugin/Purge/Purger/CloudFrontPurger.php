@@ -89,7 +89,7 @@ class CloudFrontPurger extends PurgerBase {
       elseif ($invalidation instanceof PathInvalidation || $invalidation instanceof WildcardPathInvalidation) {
         if (is_string($expression = $invalidation->getExpression())) {
           // Ensure we always have a leading slash.
-          $paths[] = '/' . ltrim($expression, ' /');
+          $paths[] = htmlentities('/' . ltrim($expression, ' /'));
         }
       }
       else {
