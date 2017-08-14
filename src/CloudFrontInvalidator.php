@@ -13,23 +13,23 @@ class CloudFrontInvalidator implements CloudFrontInvalidatorInterface {
   /**
    * The CloudFront client.
    *
-   * @var CloudFrontClient
+   * @var \Aws\CloudFront\CloudFrontClient
    */
   protected $client;
 
   /**
    * The logger.
    *
-   * @var LoggerInterface
+   * @var \Psr\Log\LoggerInterface
    */
   protected $logger;
 
   /**
    * CloudFrontInvalidator constructor.
    *
-   * @param CloudFrontClient $client
+   * @param \Aws\CloudFront\CloudFrontClient $client
    *   The CloudFront client.
-   * @param LoggerInterface $logger
+   * @param \Psr\Log\LoggerInterface $logger
    *   The logger.
    */
   public function __construct(CloudFrontClient $client, LoggerInterface $logger) {
