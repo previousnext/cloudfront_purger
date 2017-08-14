@@ -23,6 +23,8 @@ class CloudFrontPurgerConfigFormTest extends UnitTestCase {
     $configFactory = $this->getConfigFactoryStub([
       'cloudfront_purger.settings' => [
         'distribution_id' => 'wizzbanger',
+        'aws_key' => 'ABCD1234',
+        'aws_secret' => 'WXYZ5678'
       ],
     ]);
     /** @var \PHPUnit_Framework_MockObject_MockObject|\Drupal\Core\Config\Config $config */
@@ -32,12 +34,25 @@ class CloudFrontPurgerConfigFormTest extends UnitTestCase {
       ->with($this->equalTo('distribution_id'), $this->equalTo('foobarbaz'))
       ->willReturn($config);
 
+    $config->expects($this->once())
+      ->method('set')
+      ->with($this->equalTo('aws_key'), $this->equalTo(''))
+      ->willReturn($config);
+
+    $config->expects($this->once())
+      ->method('set')
+      ->with($this->equalTo('aws_secret'), $this->equalTo(''))
+      ->willReturn($config);
+
+
     $configForm = new CloudFrontPurgerConfigForm($configFactory);
 
     $form = [];
     $form_state = (new FormState())
       ->setValues([
         'distribution_id' => 'foobarbaz',
+        'aws_key' => '',
+        'aws_secret' => '',
       ]);
 
     $configForm->submitFormSuccess($form, $form_state);

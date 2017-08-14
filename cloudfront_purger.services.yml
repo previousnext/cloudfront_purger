@@ -10,8 +10,13 @@ services:
     arguments: ['@cloudfront_purger.cloudfront_client', '@logger.channel.cloudfront_purger']
 
   cloudfront_purger.cloudfront_client:
-    class: \Aws\CloudFront\CloudFrontClient
-    arguments: ['%cloudfront_purger.cloudfront_client.options%']
+    class: Aws\CloudFront\CloudFrontClient
+    factory: 'cloudfront_purger.cloudfront_client_factory:createInstance'
+    arguments: ['%cloudfront_purger.cloudfront_client.options%', '@config.factory']
+    public: false
+
+  cloudfront_purger.cloudfront_client_factory:
+    class: Drupal\cloudfront_purger\CloudFrontClientFactory
     public: false
 
   logger.channel.cloudfront_purger:

@@ -33,6 +33,16 @@ class CloudFrontPurgerConfigForm extends PurgerConfigFormBase {
       '#title' => t('Distribution ID'),
       '#default_value' => $this->config('cloudfront_purger.settings')->get('distribution_id'),
     ];
+    $form['aws_key'] = [
+      '#type' => 'textfield',
+      '#title' => t('AWS Key'),
+      '#default_value' => $this->config('cloudfront_purger.settings')->get('aws_key'),
+    ];
+    $form['aws_secret'] = [
+      '#type' => 'textfield',
+      '#title' => t('AWS Secret'),
+      '#default_value' => $this->config('cloudfront_purger.settings')->get('aws_secret'),
+    ];
     return parent::buildForm($form, $form_state);
   }
 
@@ -42,6 +52,8 @@ class CloudFrontPurgerConfigForm extends PurgerConfigFormBase {
   public function submitFormSuccess(array &$form, FormStateInterface $form_state) {
     $this->config('cloudfront_purger.settings')
       ->set('distribution_id', $form_state->getValue('distribution_id'))
+      ->set('aws_key', $form_state->getValue('aws_key'))
+      ->set('aws_secret', $form_state->getValue('aws_secret'))
       ->save();
   }
 
