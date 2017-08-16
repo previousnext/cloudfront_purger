@@ -46,14 +46,21 @@ parameters:
 
 ## AWS Authentication
 
-This module does not require setting AWS access keys, and assumes you are following best practices and
-following the SDK Guide on [Credentials][3]
+You can set the AWS key and secret in `settings.php`:
 
-This means, either using:
+```
+$config['cloudfront_purger.settings']['aws_key'] = 'ABCD1234';
+$config['cloudfront_purger.settings']['aws_secret'] = 'ABCD1234';
+```
+
+If you do not explicitly set AWS key and secret in config, it will fall
+back to:
 
 - IAM Roles
 - Exporting credentials using environment variables
 - Using a profile in a ~/.aws/credentials file
+
+See the AWS SDK Guide on [Credentials][3]
 
 You will need to allow the `cloudfront:CreateInvalidation` action in your IAM policy.
 

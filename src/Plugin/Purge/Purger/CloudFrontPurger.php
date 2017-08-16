@@ -58,6 +58,7 @@ class CloudFrontPurger extends PurgerBase {
   public function __construct(array $configuration, $plugin_id, $plugin_definition, CloudFrontInvalidatorInterface $invalidator, ConfigFactoryInterface $config_factory) {
     $this->invalidator = $invalidator;
     $this->settings = $config_factory->get('cloudfront_purger.settings');
+
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
 
