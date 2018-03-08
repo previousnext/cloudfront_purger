@@ -44,7 +44,7 @@ class CloudFrontInvalidatorTest extends UnitTestCase {
    */
   public function setUp() {
     parent::setUp();
-    $this->logger = $this->getMock(LoggerInterface::class);
+    $this->logger = $this->createMock(LoggerInterface::class);
     $this->client = $this->getMockBuilder(CloudFrontClient::class)
       ->disableOriginalConstructor()
       ->setMethods(['createInvalidation'])
@@ -90,7 +90,7 @@ class CloudFrontInvalidatorTest extends UnitTestCase {
       ->method('iinfo');
 
     /* @var \PHPUnit_Framework_MockObject_MockObject|\Aws\CommandInterface $command */
-    $command = $this->getMock(CommandInterface::class);
+    $command = $this->createMock(CommandInterface::class);
 
     $this->client->method('createInvalidation')
       ->will($this->throwException(new AwsException('test message', $command)));
