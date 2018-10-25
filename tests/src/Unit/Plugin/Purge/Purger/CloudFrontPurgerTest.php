@@ -58,8 +58,8 @@ class CloudFrontPurgerTest extends UnitTestCase {
       ],
     ]);
 
-    $this->invalidator = $this->getMock(CloudFrontInvalidatorInterface::class);
-    $this->logger = $this->getMock(LoggerInterface::class);
+    $this->invalidator = $this->createMock(CloudFrontInvalidatorInterface::class);
+    $this->logger = $this->createMock(LoggerInterface::class);
 
     $configuration = [
       'id' => 'cloudfront',
