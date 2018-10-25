@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "cloudfront",
  *   label = @Translation("CloudFront Purger"),
  *   configform = "\Drupal\cloudfront_purger\Form\CloudFrontPurgerConfigForm",
- *   cooldown_time = 3.0,
+ *   cooldown_time = 0.0,
  *   description = @Translation("Uses AWS CloudFront API for creating invalidations."),
  *   multi_instance = FALSE,
  *   types = {"path", "wildcardpath", "everything"},
